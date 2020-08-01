@@ -48,6 +48,7 @@ function App() {
         <ul>
           <li><a href="https://twitter.com/">@_X_y_z_</a></li>
           <li><a href="https://unsweets.net/">&lt;unsweets/&gt;</a></li>
+          <li><a href="https://github.com/sunya9/ese-cheatcode-generator">source code</a></li>
         </ul>
       </footer>
     </div>
