@@ -9,14 +9,17 @@ describe('App', () => {
   test('generate cheat code', async () => {
     await act(async () => {
       render(<App />);
-      const inputEl = await screen.findByTestId('input') as HTMLTextAreaElement
-      const outputEl = await screen.findByTestId('output') as HTMLTextAreaElement
-      fireEvent.change(inputEl, { target: { value: 'lorem'}})
-      expect(outputEl.value).toEqual(expect.stringMatching(/^lorem\n\w{8} \w{8}$/))
-      // multiple
-      fireEvent.change(inputEl, { target: { value: 'lorem\nipsum'}})
-      expect(outputEl.value).toEqual(expect.stringMatching(/^lorem\n\w{8} \w{8}\nipsum\n\w{8} \w{8}$/))
     })
-
-  })
+    const inputEl = screen.getByTestId('input') as HTMLTextAreaElement
+    const outputEl = screen.getByTestId('output') as HTMLTextAreaElement
+    await act(async () => {
+      fireEvent.change(inputEl, { target: { value: 'lorem'}})
+    })
+    expect(outputEl.value).toEqual(expect.stringMatching(/^lorem\n\w{8} \w{8}$/))
+    // multiple
+    await act(async () => {
+      fireEvent.change(inputEl, { target: { value: 'lorem\nipsum'}})
+    })
+    expect(outputEl.value).toEqual(expect.stringMatching(/^lorem\n\w{8} \w{8}\nipsum\n\w{8} \w{8}$/))
+    })
 })
